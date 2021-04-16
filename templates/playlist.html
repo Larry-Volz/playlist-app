@@ -2,22 +2,30 @@
 
 {% block content %}
 
-<div class="jumbotron">
-  <h1>{{ playlist.name }}!</h1>
-  {% if playlist.description %}
-  <p class="lead">{{ playlist.description }}</p>
-  {% endif %}
-</div>
+  <div class="jumbotron">
+    <h1>{{ playlist.name }}!</h1>
+    {% if playlist.description %}
+    <p class="lead">{{ playlist.description }}</p>
+    {% endif %}
+  </div>
 
 
-<div class="text-danger">
-  SHOW ALL OF THE SONGS IN THIS PLAYLIST HERE
-</div>
+  <div class="text-primary">
+    {% for song in songs%}
 
-<p>
-  <a class="btn btn-primary" href="/playlists/{{ playlist.id }}/add-song">
-    Add Song To Playlist
-  </a>
-</p>
+      <h4>
+        <li>
+          {{song.song.title}}
+        </li>
+      </h4>
+
+    {% endfor %}
+  </div>
+
+  <p>
+    <a class="btn btn-primary" href="/playlists/{{ playlist.id }}/add-song">
+      Add Song To Playlist
+    </a>
+  </p>
 
 {% endblock %}

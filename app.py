@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///playlist-app'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 connect_db(app)
 db.create_all()
@@ -46,7 +47,10 @@ def show_all_playlists():
 def show_playlist(playlist_id):
     """Show detail on specific playlist."""
 
-    # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    playlist = Playlist.query.get_or_404(playlist_id)
+    songs = playlist.assignments
+    #from here access songs.song.title etc.
+    return render_template("playlist.html", playlist=playlist, songs=songs)
 
 
 @app.route("/playlists/add", methods=["GET", "POST"])
