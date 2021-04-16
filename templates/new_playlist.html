@@ -2,6 +2,34 @@
 
 {% block content %}
 
-<h1>Add a form that when submitted creates a new playlist!</h1>
+<h1>Create a new playlist!</h1>
+
+<form action="/playlists/add" method= "POST", enctype="multipart/form-data">
+
+    {{ form.hidden_tag() }}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+    
+        
+        <div class="form-group">
+            {{ field.label }}
+            {{ field(class="form-control") }}
+            
+                {% for error in field.errors %} 
+                <br>
+                <small class="form-text text-danger">
+                    {{ error }} 
+                </small>
+                {% endfor %} 
+        </div>
+            
+    {% endfor %}
+
+    <!-- {{ form.name.label }} {{form.name }} <br>
+    {{ form.description.label }} {{ form.description }} <br> -->
+    <button class="btn btn-success" type="submit">Add</button>
+    <a href="/"><button class="btn btn-danger" >Cancel</button></a>
+
+</form>
 
 {% endblock %}

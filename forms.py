@@ -1,13 +1,21 @@
 """Forms for playlist app."""
 
-from wtforms import SelectField
 from flask_wtf import FlaskForm
+from wtforms import SelectField
+from wtforms import StringField, validators, HiddenField
+from wtforms.validators import InputRequired, Optional
 
 
 class PlaylistForm(FlaskForm):
     """Form for adding playlists."""
 
-    # Add the necessary code to use this form
+    name = StringField("Create a playlist", validators = [InputRequired(message = "cannot be blank")])
+
+    description = StringField("Tell us about it")
+
+ 
+
+
 
 
 class SongForm(FlaskForm):

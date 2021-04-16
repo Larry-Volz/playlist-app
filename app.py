@@ -1,9 +1,10 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, flash
 from flask_debugtoolbar import DebugToolbarExtension
 
 from models import db, connect_db, Playlist, Song, PlaylistSong
 from forms import NewSongForPlaylistForm, SongForm, PlaylistForm
 from secrets import MY_KEY #want to be in good habits for security
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///playlist-app'
@@ -61,7 +62,22 @@ def add_playlist():
     - if valid: add playlist to SQLA and redirect to list-of-playlists
     """
 
-    # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    form = PlaylistForm()
+
+    if form.validate_on_submit(): #csrf & is POST
+        name = form.name.data  
+        description = form.description.data 
+
+        playlist =  Playlist(name=name, description=description)
+        
+        db.session.add(playlist)
+        db.session.commit()
+
+        flash(f"Playlist created!")
+        return redirect(f'/playlists')
+
+    else:
+        return render_template("new_playlist.html", form=form)
 
 
 ##############################################################################
