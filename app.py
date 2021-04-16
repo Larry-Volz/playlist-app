@@ -96,7 +96,10 @@ def show_all_songs():
 def show_song(song_id):
     """return a specific song"""
 
-    # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    song = Song.query.get_or_404(song_id)
+    mapper = song.assignments
+    #from here access songs.song.title etc.
+    return render_template("song.html", song=song, mapper=mapper)
 
 
 @app.route("/songs/add", methods=["GET", "POST"])

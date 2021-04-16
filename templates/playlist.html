@@ -12,11 +12,11 @@
 
   <div class="text-primary">
     {% for song in songs%}
-
+      <a href="/songs/{{ song.song.id }}">
         <li>
           {{song.song.title}}
         </li>
-
+      </a>
     {% endfor %}
   </div>
 
