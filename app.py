@@ -107,6 +107,24 @@ def add_song():
     - if valid: add playlist to SQLA and redirect to list-of-songs
     """
 
+    form = SongForm()
+
+    if form.validate_on_submit(): #csrf & is POST
+        title = form.title.data  
+        artist = form.artist.data 
+
+        song =  Song(title=title, artist=artist)
+        
+        db.session.add(song)
+        db.session.commit()
+
+        flash("Song added!")
+        return redirect('/songs')
+
+    else:
+        return render_template("new_song.html", form=form)
+
+
     # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
 
 
