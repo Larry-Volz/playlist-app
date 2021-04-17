@@ -49,9 +49,8 @@ def show_playlist(playlist_id):
     """Show detail on specific playlist."""
 
     playlist = Playlist.query.get_or_404(playlist_id)
-    songs = playlist.assignments
     #from here access songs.song.title etc.
-    return render_template("playlist.html", playlist=playlist, songs=songs)
+    return render_template("playlist.html", playlist=playlist)
 
 
 @app.route("/playlists/add", methods=["GET", "POST"])
@@ -95,11 +94,8 @@ def show_all_songs():
 @app.route("/songs/<int:song_id>")
 def show_song(song_id):
     """return a specific song"""
-
     song = Song.query.get_or_404(song_id)
-    mapper = song.assignments
-    #from here access songs.song.title etc.
-    return render_template("song.html", song=song, mapper=mapper)
+    return render_template("song.html", song=song)
 
 
 @app.route("/songs/add", methods=["GET", "POST"])

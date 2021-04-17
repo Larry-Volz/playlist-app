@@ -11,10 +11,10 @@
 
 
   <div class="text-primary">
-    {% for song in songs%}
-      <a href="/songs/{{ song.song.id }}">
+    {% for song in playlist.songs%}
+      <a href="/songs/{{ song.id }}">
         <li>
-          {{song.song.title}}
+          {{song.title}}
         </li>
       </a>
     {% endfor %}

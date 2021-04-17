@@ -11,10 +11,10 @@
   <h2>Playlists containing this song</h2>
   <ul> 
     <div class="text-primary">
-      {% for list in mapper %}
-        <a href="/playlists/{{list.playlist.id}}">
+      {% for list in song.playlists %}
+        <a href="/playlists/{{list.id}}">
           <li>
-            {{list.playlist.name}}
+            {{list.name}}
           </li>
         </a>
       {% endfor %}
