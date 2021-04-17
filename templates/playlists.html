@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+  {% for msg in get_flashed_messages() %} 
+      <div class="bg-success m-4 text-center">
+          {{msg}}
+      </div>
+  {% endfor %}
+  
   <h1>See all the playlists!</h1>
 
   <ul>
