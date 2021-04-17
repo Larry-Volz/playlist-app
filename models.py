@@ -1,4 +1,4 @@
-"""Models for Playlist app."""
+"""Models for Playlist app.""" 
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -40,6 +40,8 @@ class PlaylistSong(db.Model):
     """Mapping of a playlist to a song."""
 
     __tablename__ = 'playlistsongs'
+    def __repr__(self):
+           return f"id={self.id} playlist_id={self.playlist_id} song_id={self.song_id}" 
 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     playlist_id = db.Column(db.Integer, db.ForeignKey('playlists.id'), nullable=False)

@@ -142,8 +142,14 @@ def add_song_to_playlist(playlist_id):
 
     # Restrict form to songs not already on this playlist
 
-    curr_on_playlist = ...
-    form.song.choices = ...
+    #curr_on_playlist = ...
+    curr_on_playlist = None
+
+    if curr_on_playlist:
+        flash("That is already on this playlist")
+        return redirect(f"/playlists/{playlist_id}")
+
+    #form.song.choices = ...
 
     if form.validate_on_submit():
 
